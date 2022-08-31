@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.myapplication">
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+<!--
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+-->
+
+    <application
+        android:name=".saytimeapp.SayTimeApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31">
+        <activity
+            android:name=".saytimeapp.SayTimeActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MyApplication">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".saytimeapp.SettingsActivity"
+            android:label="@string/set_preferences">
+        </activity>
+
+
+        <service android:name=".saytimeapp.SayTimeService"/>
+
+
+        <!-- Adding a receiver that will intercept the media button and perform
+            actions. -->
+        <receiver android:name=".saytimeapp.MediaButtonIntentReceiver"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.CAMERA_BUTTON"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.CALL_BUTTON"/>
+
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".saytimeapp.AlarmIntentReceiver"
+            android:process=":remote"/>
+
+        <receiver android:name=".saytimeapp.WidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info"/>
+        </receiver>
+
+    </application>
+
+</manifest>

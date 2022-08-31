@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout01" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:background="#777766">
+
+    <ImageView android:id="@+id/ImageView01" android:src="@drawable/background"
+        android:layout_height="fill_parent" android:layout_width="fill_parent"></ImageView>
+
+    <AnalogClock android:clickable="true" android:id="@+id/AnalogClock"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:dial="@drawable/nothing" android:layout_marginTop="40dip" android:layout_marginLeft="15dip">
+    </AnalogClock>
+
+</RelativeLayout>
